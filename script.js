@@ -4,6 +4,8 @@ let obstacleSpeed = 1;
 var result = document.getElementById("result")
 var game =  document.getElementById("game-container");
 var scorediv = document.getElementById("score")
+let pause = document.getElementById("pause");
+var jumpsound = document.getElementById("jumpsound")
 const obstacleInterval = 2000;
 const carWidth = 50;
 const laneWidth = 150;
@@ -39,7 +41,7 @@ function update() {
   });
 
   
-  obstacleSpeed += 0.01;
+  obstacleSpeed += 0.001;
 
   
   obstacles.forEach(obstacle => {
@@ -51,10 +53,12 @@ function update() {
 
 
 function moveCar(e) {
-  if (e.key === 'ArrowLeft') {
+  if (e.key === 'ArrowLeft' || e.key === 'a') {
     moveLeft();
-  } else if (e.key === 'ArrowRight') {
+    jumpsound.play()
+  } else if (e.key === 'ArrowRight' || e.key === 'd') {
     moveRight();
+    jumpsound.play()
   }
 }
 
@@ -119,5 +123,4 @@ function gameOver() {
 
 
 window.onload = init;
-
 
