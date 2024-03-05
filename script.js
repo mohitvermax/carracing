@@ -11,6 +11,12 @@ const carWidth = 50;
 const laneWidth = 150;
 const laneCount = 3;
 
+const bgm = new Audio('bgm.mp3');
+
+
+
+bgm.loop = true; 
+bgm.play();
 
 function init() {
   car = document.getElementById('car');
@@ -110,11 +116,11 @@ function isColliding(elem1, elem2) {
 function gameOver() {
 
   
-  const pastPoints = JSON.parse(localStorage.getItem('points')) || [];
+  const pastPoints = JSON.parse(localStorage.getItem('points'));
   pastPoints.push(score);
   localStorage.setItem('points', JSON.stringify(pastPoints));
   document.getElementById('scorefinal').textContent = score;
-
+  bgm.pause();
   result.style.display = "flex";
     game.style.display = "none";
 
