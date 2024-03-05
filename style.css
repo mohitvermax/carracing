@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'gilroy';
+}
+
+body{
+
+    height: 100vh;
+    width: 100%;
+    background-image: url(images/bg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.title{
+    display: flex;
+    font-size: 24px;
+    padding-top: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+}
+#game-container {
+    position: relative;
+    width: 450px; 
+    height: 600px; 
+    margin: 0 auto;
+    overflow: hidden;
+    border: 2px solid #000;
+  }
+  
+  #car {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 70px;
+    height: 100px;
+
+  }
+#car img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+#road{
+    background-image: url(images/lanes.jpg);
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    background-position: center;
+    
+    
+}
+
+  
+  .lane {
+    position: absolute;
+    width: 150px; 
+    height: 100%;
+    border-right: 2px solid #fff;
+  }
+  
+  .lane:nth-child(2) {
+    left: 150px;
+  }
+  
+  .lane:nth-child(3) {
+    left: 300px;
+  }
+  
+  /* .obstacle {
+    position: absolute;
+    width: 80px; 
+    height: 80px; 
+
+    background-image: url(images/car.png);
+  } */
+  
+  #result{
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 200px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(21, 21, 21);
+    
+    border-radius: 20px;
+    font-size: 25px;
+    text-align: center;
+    
+    color: rgb(255, 255, 255);
+    display:none ;
+}
+#score{
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255);
+}
+#btn{
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: none;
+    background-color: black;
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    margin-top: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
