@@ -14,7 +14,7 @@ let isPaused = false;
 let pauseButton = document.getElementById('pause');
 
 const bgm = new Audio('bgm.mp3');
-
+let bgmStarted = false;
 
 
 bgm.loop = true; 
@@ -33,6 +33,14 @@ function init() {
   setInterval(update, 10);
   setInterval(addObstacle, obstacleInterval);
 }
+function startBackgroundMusic() {
+  if (!bgmStarted) {
+      bgm.loop = true;
+      bgm.play();
+      bgmStarted = true; 
+  }
+}
+document.addEventListener('keydown',startBackgroundMusic);
 function togglePause() {
   isPaused = !isPaused;
   if (isPaused) {
@@ -60,7 +68,7 @@ function update() {
   });
 
   
-  obstacleSpeed += 0.002;
+  obstacleSpeed += 0.001;
 
   
   obstacles.forEach(obstacle => {
@@ -116,7 +124,7 @@ function addObstacle() {
     game.appendChild(obstacle);
     obstacles.push(obstacle);
 
-    
+    obstacleSpeed += 0.02
   }
 }
   
