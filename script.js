@@ -133,21 +133,35 @@ function addObstacle() {
 function isColliding(elem1, elem2) {
   const rect1 = elem1.getBoundingClientRect();
   const rect2 = elem2.getBoundingClientRect();
-  return !(
-    rect1.top > rect2.bottom ||
-    rect1.right < rect2.left ||
-    rect1.bottom < rect2.top ||
-    rect1.left > rect2.right
-  );
+
+  const elem1Left = rect1.left;
+  const elem1Right = rect1.right;
+  const elem1Top = rect1.top;
+  const elem1Bottom = rect1.bottom;
+
+  const elem2Left = rect2.left;
+  const elem2Right = rect2.right;
+  const elem2Top = rect2.top;
+  const elem2Bottom = rect2.bottom;
+
+  if (
+    elem1Right >= elem2Left &&
+    elem1Left <= elem2Right &&
+    elem1Bottom >= elem2Top &&
+    elem1Top <= elem2Bottom
+  ) {
+
+    return true;
+  }
+
+  return false;
 }
 
 
 function gameOver() {
 
   
-  const pastPoints = JSON.parse(localStorage.getItem('points'));
-  pastPoints.push(score);
-  localStorage.setItem('points', JSON.stringify(pastPoints));
+  
   document.getElementById('scorefinal').textContent = score;
   bgm.pause();
   pauseButton.style.display = 'none';
