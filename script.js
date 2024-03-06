@@ -1,12 +1,12 @@
 let car, lanes, obstacles, score;
-let speed = 1;
+
 let obstacleSpeed = 1;
 var result = document.getElementById("result")
 var game =  document.getElementById("game-container");
 var scorediv = document.getElementById("score")
 let pause = document.getElementById("pause");
 var jumpsound = document.getElementById("jumpsound");
-const obstacleInterval = 2500;
+const obstacleInterval = 2000;
 const carWidth = 50;
 const laneWidth = 150;
 const laneCount = 3;
@@ -49,7 +49,7 @@ function update() {
   if (!isPaused) {
   
   obstacles.forEach(obstacle => {
-    obstacle.style.top = `${parseInt(obstacle.style.top) + speed}px`;
+    obstacle.style.top = `${parseInt(obstacle.style.top) + obstacleSpeed}px`;
     if (parseInt(obstacle.style.top) > window.innerHeight) {
         score++;
       obstacle.remove();
@@ -109,12 +109,14 @@ function addObstacle() {
     obstacle.style.top = '-80px'; 
     obstacle.style.left = `${lane.offsetLeft}px`; 
     obstacle.style.width = '100px'; 
-    obstacle.style.height = '80px'; 
-    obstacle.style.backgroundImage = 'url(images/car.png)'; 
+    obstacle.style.height = '100px'; 
+    obstacle.style.backgroundImage = 'url(images/car2.png)'; 
     obstacle.style.backgroundSize = 'cover'; 
     obstacle.style.position = 'absolute'; 
     game.appendChild(obstacle);
     obstacles.push(obstacle);
+
+    obstacleSpeed += 0.01;
   }
 }
   
