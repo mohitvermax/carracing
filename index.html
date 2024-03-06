@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Car Racing</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,10 +13,11 @@
         <h1>Car Racing 🚗</h1>
     <div id="score">Score: <span id="score-value">0</span></div>
 </div>
-    <button id="pause">
+    <button id="pause" >
         Pause
     </button>
 </div>
+
     <div id="game-container">
         <div id="car">
             <img src="images/car.png" alt="">
@@ -31,7 +33,7 @@
       <div id="result">
         <h1>Game Over</h1>
         <div id="score">Score: <span id="scorefinal">0</span></div>
-        <button id="btn" onclick="location.reload()">Restart</button>
+        <button id="restart" onclick="location.reload()">Restart</button>
     </div>
     <audio id="jumpsound" src="sound.mp3"></audio>
     <script src="script.js"></script>
