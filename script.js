@@ -6,7 +6,7 @@ var game =  document.getElementById("game-container");
 var scorediv = document.getElementById("score")
 let pause = document.getElementById("pause");
 var jumpsound = document.getElementById("jumpsound");
-const obstacleInterval = 2000;
+const obstacleInterval = 2300;
 const carWidth = 50;
 const laneWidth = 150;
 const laneCount = 3;
@@ -60,7 +60,7 @@ function update() {
   });
 
   
-  obstacleSpeed += 0.001;
+  obstacleSpeed += 0.002;
 
   
   obstacles.forEach(obstacle => {
@@ -116,7 +116,7 @@ function addObstacle() {
     game.appendChild(obstacle);
     obstacles.push(obstacle);
 
-    obstacleSpeed += 0.01;
+    
   }
 }
   
