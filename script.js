@@ -5,11 +5,13 @@ var result = document.getElementById("result")
 var game =  document.getElementById("game-container");
 var scorediv = document.getElementById("score")
 let pause = document.getElementById("pause");
-var jumpsound = document.getElementById("jumpsound")
-const obstacleInterval = 2000;
+var jumpsound = document.getElementById("jumpsound");
+const obstacleInterval = 2500;
 const carWidth = 50;
 const laneWidth = 150;
 const laneCount = 3;
+let isPaused = false;
+let pauseButton = document.getElementById('pause');
 
 const bgm = new Audio('bgm.mp3');
 
@@ -24,16 +26,27 @@ function init() {
   obstacles = [];
   score = 0;
 
- 
+  pauseButton.addEventListener('click', togglePause);
   document.addEventListener('keydown', moveCar);
 
  
   setInterval(update, 10);
   setInterval(addObstacle, obstacleInterval);
 }
+function togglePause() {
+  isPaused = !isPaused;
+  if (isPaused) {
+    pauseButton.textContent = 'Resume';
+    bgm.pause();
+  } else {
+    pauseButton.textContent = 'Pause';
+    bgm.play()
+  }
+}
 
  
 function update() {
+  if (!isPaused) {
   
   obstacles.forEach(obstacle => {
     obstacle.style.top = `${parseInt(obstacle.style.top) + speed}px`;
@@ -56,9 +69,11 @@ function update() {
     }
   });
 }
+}
 
 
 function moveCar(e) {
+  if (!isPaused ){
   if (e.key === 'ArrowLeft' || e.key === 'a') {
     moveLeft();
     jumpsound.play()
@@ -67,13 +82,15 @@ function moveCar(e) {
     jumpsound.play()
   }
 }
+}
 
 
 function moveLeft() {
-  if (car.offsetLeft > 0) {
+  if (car.offsetLeft >= laneWidth) { 
     car.style.left = `${car.offsetLeft - laneWidth}px`;
   }
 }
+
 
 
 function moveRight() {
@@ -84,6 +101,7 @@ function moveRight() {
 
 
 function addObstacle() {
+  if (!isPaused){
     const laneIndex = Math.floor(Math.random() * laneCount);
     const lane = lanes[laneIndex];
     const obstacle = document.createElement('div');
@@ -98,6 +116,7 @@ function addObstacle() {
     game.appendChild(obstacle);
     obstacles.push(obstacle);
   }
+}
   
 
 
@@ -121,6 +140,7 @@ function gameOver() {
   localStorage.setItem('points', JSON.stringify(pastPoints));
   document.getElementById('scorefinal').textContent = score;
   bgm.pause();
+  pauseButton.style.display = 'none';
   result.style.display = "flex";
     game.style.display = "none";
 
